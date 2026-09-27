@@ -17,4 +17,4 @@ const users: User[] = [{
     password: 'asaa1313',
 }];
 
-export default users;
+export default user
