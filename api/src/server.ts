@@ -7,4 +7,6 @@ app.use(express.json())
 
 app.use('/users', userRouter);
 
+app.use(express.static('/workspaces/Corcoiote/web'));
+
 app.listen(3000)
