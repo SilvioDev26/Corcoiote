@@ -26,19 +26,76 @@
 
             const root = ReactDOM.createRoot(container);
 
-            const Title = () => {
-                return <h1>Corcoiote</h1>;
-            };
+            const invoices = [{
+                id: 1,
+                amount: 125037,
+                status: 'paid',
+                issueDate: '2026-09-15',
+                dueDate: '2026-10-16',
+                customer: {
+                    id: 2,
+                    name: 'Construtora Meridiano',
+                    email: 'comercial@meridiano.com.br'
+                }
+            }, {
+                id: 3,
+                amount: 93750,
+                status: 'pending',
+                issueDate: '2026-10-01',
+                dueDate: '2026-11-03',
+                customer: {
+                    id: 5,
+                    name: 'Gráfica Nova Vida',
+                    email: 'grafica@novavida.com.br'
+                }
+            }, {
+                id: 4,
+                amount: 1375336,
+                status: 'pending',
+                issueDate: '2026-10-10',
+                dueDate: '2026-11-25',
+                customer: {
+                    id: 3,
+                    name: 'Aly Som',
+                    email: 'cotato@alysom.com.br'
+                }
+            }];
 
-            const Paragraph = () => {
-                return <p>Bem vindo ao curso de React.</p>;
-            };
+            function statusLabel(status) {
+                return status === 'paid' ? 'Paga' : 'Pendente';
+            }
+
+            function Row(props) {
+                return <tr>
+                    <td>{props.data.customer.name}</td>
+                    <td>{props.data.amount}</td>
+                    <td>{props.data.issueDate}</td>
+                    <td>{props.data.dueDate}</td> 
+                    <td>{statusLabel(props.data.status)}</td>
+                </tr>
+            }
+
+            function Table() {
+                return <table>
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Valor</th>
+                            <th>Emissão</th>
+                            <th>Vencimento</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {invoices.map((invoice) => {
+                            return <Row data={invoice} />
+                        })}
+                    </tbody>
+                </table>;
+            }
 
             function App() {
-                return <>
-                    <Title/>
-                    <Paragraph/>
-                </>;
+                return <Table/>;
             }
 
             root.render(<App/>);
